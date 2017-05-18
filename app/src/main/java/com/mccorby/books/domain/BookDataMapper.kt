@@ -16,6 +16,6 @@ class BookDataMapper {
     }
 
     private fun convertBookToDomain(bookNet: BookNetModel): Book {
-        return Book(bookNet.title)
+        return Book(bookNet.title, bookNet.icon)
     }
 }
