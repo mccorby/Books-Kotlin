@@ -2,10 +2,10 @@ package com.mccorby.books
 
 import android.app.Application
 
-class App: Application() {
+class BookApplication : Application() {
 
     companion object {
-        lateinit var instance: App
+        lateinit var instance: BookApplication
             // Delegates need vars but we don't want the setter to be public...
             private set
     }
