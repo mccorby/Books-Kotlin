@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.mccorby.books.domain.command.RequestBookListCommand
-import com.mccorby.books.domain.entity.Book
 import com.mccorby.books.ui.BookListAdapter
 import org.jetbrains.anko.*
 
@@ -31,11 +30,7 @@ class MainActivity : AppCompatActivity() {
             uiThread {
                 Log.d(javaClass.simpleName, "BooksRequest performed")
                 longToast("BooksRequest performed")
-                bookListView.adapter = BookListAdapter(bookList, object: BookListAdapter.OnBookClickListener {
-                    override fun invoke(book: Book) {
-                        toast(book.title)
-                    }
-                })
+                bookListView.adapter = BookListAdapter(bookList) { toast(it.title)}
             }
         }
 

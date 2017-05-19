@@ -12,11 +12,7 @@ import com.mccorby.books.domain.entity.BookList
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
 
-class BookListAdapter(val items: BookList, val itemClick: OnBookClickListener) : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
-
-    interface OnBookClickListener {
-        operator fun invoke(book: Book)
-    }
+class BookListAdapter(val items: BookList, val itemClick: (Book) -> Unit) : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindBook(items[position])
@@ -29,7 +25,7 @@ class BookListAdapter(val items: BookList, val itemClick: OnBookClickListener) :
         return ViewHolder(view, itemClick)
     }
 
-    class ViewHolder(view: View, val itemClick: OnBookClickListener) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val itemClick: (Book) -> Unit) : RecyclerView.ViewHolder(view) {
         private val iconView = view.find<ImageView>(R.id.book_icon)
         private val titleView = view.find<TextView>(R.id.book_title)
 
