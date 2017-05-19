@@ -4,13 +4,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.mccorby.books.R
 import com.mccorby.books.domain.entity.Book
 import com.mccorby.books.domain.entity.BookList
 import com.squareup.picasso.Picasso
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.book_item.view.*
 
 class BookListAdapter(val items: BookList, val itemClick: (Book) -> Unit) : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
 
@@ -26,13 +24,11 @@ class BookListAdapter(val items: BookList, val itemClick: (Book) -> Unit) : Recy
     }
 
     class ViewHolder(view: View, val itemClick: (Book) -> Unit) : RecyclerView.ViewHolder(view) {
-        private val iconView = view.find<ImageView>(R.id.book_icon)
-        private val titleView = view.find<TextView>(R.id.book_title)
 
         fun bindBook(book: Book) {
             with(book) {
-                Picasso.with(itemView.ctx).load(iconUrl).into(iconView)
-                titleView.text = title
+                Picasso.with(itemView.ctx).load(iconUrl).into(itemView.book_icon)
+                itemView.book_title.text = title
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
